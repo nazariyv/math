@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 
 def vector_length(v):
     return np.linalg.norm(v)
@@ -14,14 +13,23 @@ def angle_between(v1, v2):
     return np.arccos(np.clip(np.dot(v1_u, v2_u), -1.0, 1.0))
 
 # Define two 3D vectors
-vector1 = np.array([2, 3, 4])
-vector2 = np.array([1, -2, 2])
+vector1 = np.array([1, 1, 1])
+vector2 = np.array([-1, -1, -0.9])
+
+print(f"Vector 1: {vector1}")
+print(f"Vector 2: {vector2}")
+print(f"Length of vector 1: {vector_length(vector1)}")
+print(f"Length of vector 2: {vector_length(vector2)}")
+
+# Calculate dot product
+dot_product = np.dot(vector1, vector2)
+print(f"Dot product of vectors: {dot_product}")
 
 # angle between two vectors is defined as: cos theta = (v1.v2) / (|v1| * |v2|)
 # i.e. dot product of two vectors divided by product of their magnitudes
 # and so theta = arccos((v1.v2) / (|v1| * |v2|))
-angle = np.arccos(np.dot(vector1, vector2) / (vector_length(vector1) * vector_length(vector2)))
-print(f"angle between vectors: {angle} radians")
+angle = np.arccos(dot_product / (vector_length(vector1) * vector_length(vector2)))
+print(f"Angle between vectors: {angle} radians")
 
 # Calculate the angle between vectors
 angle_rad = angle_between(vector1, vector2)
@@ -72,11 +80,17 @@ def plot_angle_arc(ax, v1, v2, radius=0.5, num_points=100):
 
 plot_angle_arc(ax, vector1, vector2)
 
+# Add dot product label
+# We'll position it at the midpoint between the tips of the two vectors
+midpoint = (vector1 + vector2) / 2
+ax.text(midpoint[0], midpoint[1], midpoint[2], f'Dot product: {dot_product:.2f}', 
+        fontsize=10, ha='center', va='center', bbox=dict(facecolor='white', alpha=0.7))
+
 # Set labels and title
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
-ax.set_title('3D Vector Visualization with Correct Angle Arc')
+ax.set_title('3D Vector Visualization with Angle Arc and Dot Product')
 
 # Set axis limits
 max_limit = max(np.max(np.abs(vector1)), np.max(np.abs(vector2)))
