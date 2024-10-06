@@ -21,3 +21,5 @@ then $d(l', p_0) = || P_{\vec{v} \perp}(p_0) ||$
 i.e. perpendicular projection of $\vec{p_0}$ on $l'$ (because vector $\vec{v}$ is parallel to $l'$)
 where $P_{\vec{v} \perp}(\vec{p_0}) = \vec{p_0} - P_{\vec{v} \perp}(p_0)$
 where $P_{\vec{v} \perp}(\vec{p_0}) = (\vec{p_0} \cdot \vec{v} / ||\vec{v}||^2) \vec{v}$
+
+- projection calculation implementation in utils

@@ -75,7 +75,7 @@ def create_3d_plot(figsize=(12, 10)):
 
 
 def plot_vector(ax, start, vector, color="r", label=None):
-    """Plot a vector in 3D space.
+    """Plot a vector in 3D space with a smaller arrowhead.
 
     Args:
         ax (Axes): Matplotlib 3D axes object.
@@ -93,6 +93,9 @@ def plot_vector(ax, start, vector, color="r", label=None):
         vector[2],
         color=color,
         label=label,
+        arrow_length_ratio=0.1,  # Controls the size of the arrowhead
+        pivot='tail',  # Ensures the arrow starts at the correct point
+        linewidth=2,  # Adjust the thickness of the arrow shaft
     )
 
 
