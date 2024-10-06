@@ -20,11 +20,28 @@ from utils import *
 
 
 def distance_from_line_to_origin(p_0, v):
+    """Calculate the shortest distance from a line to the origin.
+
+    Args:
+        p_0 (np.ndarray): A point on the line.
+        v (np.ndarray): Direction vector of the line.
+
+    Returns:
+        float: The shortest distance from the line to the origin.
+
+    Example:
+        >>> import numpy as np
+        >>> p_0 = np.array([1, 1, 1])
+        >>> v = np.array([1, 0, 0])
+        >>> round(distance_from_line_to_origin(p_0, v), 2)
+        1.41
+    """
     P_l_p_0 = (np.dot(p_0, v) / np.dot(v, v)) * v
     P_l_perp_p_0 = p_0 - P_l_p_0
     return vector_length(P_l_perp_p_0)
 
 
+# Example usage and visualization
 p_0 = np.array([1, 1, 1])
 v = np.array([2, 1, 5])
 distance = distance_from_line_to_origin(p_0, v)

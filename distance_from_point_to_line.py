@@ -5,6 +5,24 @@ from utils import *
 
 
 def distance_from_point_to_line(point, line_point, line_direction):
+    """Calculate the shortest distance from a point to a line.
+
+    Args:
+        point (np.ndarray): The point to calculate the distance from.
+        line_point (np.ndarray): A point on the line.
+        line_direction (np.ndarray): Direction vector of the line.
+
+    Returns:
+        float: The shortest distance from the point to the line.
+
+    Example:
+        >>> import numpy as np
+        >>> point = np.array([1, 1, 1])
+        >>> line_point = np.array([0, 0, 0])
+        >>> line_direction = np.array([1, 0, 0])
+        >>> round(distance_from_point_to_line(point, line_point, line_direction), 2)
+        1.41
+    """
     line_direction = unit_vector(line_direction)
     point_vector = point - line_point
     projection = np.dot(point_vector, line_direction) * line_direction
@@ -12,6 +30,7 @@ def distance_from_point_to_line(point, line_point, line_direction):
     return vector_length(perpendicular)
 
 
+# Example usage and visualization
 point = np.array([10, 10, 10])
 line_point = np.array([3, 0, 5])
 line_direction = np.array([1, -2, 0])
