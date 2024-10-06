@@ -63,7 +63,7 @@ utils.plot_shortest_distance(ax, np.zeros(3), closest_point, label="Shortest Dis
 
 midpoint = closest_point / 2
 utils.add_text_3d(
-    ax, midpoint, f"Distance: {distance:.2f}", bbox=dict(facecolor="white", alpha=0.7)
+    ax, midpoint, f"Distance: {distance:.2f}", bbox={"facecolor": "white", "alpha": 0.7}
 )
 
 utils.set_plot_limits(ax, np.vstack((p_0, v, closest_point)))
