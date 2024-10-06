@@ -1,18 +1,3 @@
-# TODO: write a readme with math for each of these files
-# line is described by a point and a vector
-# denote the point by p_0 and the vector by v
-# then line (call it l) is described by the equation l = p_0 + t*v
-# denote shortest distance from origin to this line by d(l, O)
-# now recall the concept of projection
-# consider line l' which is parallel to l, but it passes through origin
-# so it will be described by the equation l' = 0 + t*v
-# now, d(l, O) = d(l', p_0)
-# if you think of p_0 as a vector from origin to that point,
-# then d(l', p_0) = || P_{vector v perpendicular}(p_0) ||
-# i.e. perpendicular projection of p_0 on l' (because vector v is parallel to l')
-# where P_{vector v perpendicular}(p_0) = p_0 - P_{v perp}(p_0)
-# where P_{v perp}(p_0) = (p_0 \cdot v / ||v||^2) * v
-
 import matplotlib.pyplot as plt
 import numpy as np
 
