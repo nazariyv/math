@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from utils import *
+import utils
 
 
 def plot_angle_arc(ax, v1, v2, radius=0.5, num_points=100):
@@ -14,13 +14,13 @@ def plot_angle_arc(ax, v1, v2, radius=0.5, num_points=100):
         radius (float): Radius of the arc.
         num_points (int): Number of points to plot on the arc.
     """
-    v1_u = unit_vector(v1)
-    v2_u = unit_vector(v2)
-    ortho = unit_vector(np.cross(v1_u, v2_u))
+    v1_u = utils.unit_vector(v1)
+    v2_u = utils.unit_vector(v2)
+    ortho = utils.unit_vector(np.cross(v1_u, v2_u))
     # angle between two vectors is defined as: cos theta = (v1.v2) / (|v1| * |v2|)
     # i.e. dot product of two vectors divided by product of their magnitudes
     # and so theta = arccos((v1.v2) / (|v1| * |v2|))
-    angle_rad = angle_between(v1, v2)
+    angle_rad = utils.angle_between(v1, v2)
     t = np.linspace(0, angle_rad, num_points)
     rotation_matrix = lambda angle: np.array(
         [
@@ -45,7 +45,7 @@ def plot_angle_arc(ax, v1, v2, radius=0.5, num_points=100):
     arc_points *= radius
     ax.plot(arc_points[:, 0], arc_points[:, 1], arc_points[:, 2], color="g", lw=2)
     mid_point = arc_points[len(arc_points) // 2]
-    add_text_3d(ax, mid_point, f"{angle_rad:.2f} rad", fontsize=10)
+    utils.add_text_3d(ax, mid_point, f"{angle_rad:.2f} rad", fontsize=10)
 
 
 # Example usage and visualization
@@ -54,31 +54,31 @@ vector2 = np.array([-1, -1, -0.9])
 
 print(f"Vector 1: {vector1}")
 print(f"Vector 2: {vector2}")
-print(f"Length of vector 1: {vector_length(vector1)}")
-print(f"Length of vector 2: {vector_length(vector2)}")
+print(f"Length of vector 1: {utils.vector_length(vector1)}")
+print(f"Length of vector 2: {utils.vector_length(vector2)}")
 
 dot_product = np.dot(vector1, vector2)
 print(f"Dot product of vectors: {dot_product}")
 
-angle_rad = angle_between(vector1, vector2)
+angle_rad = utils.angle_between(vector1, vector2)
 print(f"Angle between vectors: {angle_rad} radians")
 
-fig, ax = create_3d_plot(figsize=(10, 8))
+fig, ax = utils.create_3d_plot(figsize=(10, 8))
 
-plot_vector(ax, np.zeros(3), vector1, color="r", label="Vector 1")
-plot_vector(ax, np.zeros(3), vector2, color="b", label="Vector 2")
+utils.plot_vector(ax, np.zeros(3), vector1, color="r", label="Vector 1")
+utils.plot_vector(ax, np.zeros(3), vector2, color="b", label="Vector 2")
 
 plot_angle_arc(ax, vector1, vector2)
 
 midpoint = (vector1 + vector2) / 2
-add_text_3d(
+utils.add_text_3d(
     ax,
     midpoint,
     f"Dot product: {dot_product:.2f}",
-    bbox=dict(facecolor="white", alpha=0.7),
+    bbox={"facecolor": "white", "alpha": 0.7},
 )
 
-set_plot_limits(ax, np.vstack((vector1, vector2)))
-finalize_plot(ax, "3D Vector Visualization with Angle Arc and Dot Product")
+utils.set_plot_limits(ax, np.vstack((vector1, vector2)))
+utils.finalize_plot(ax, "3D Vector Visualization with Angle Arc and Dot Product")
 
 plt.show()
