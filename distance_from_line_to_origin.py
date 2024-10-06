@@ -13,14 +13,17 @@
 # where P_{vector v perpendicular}(p_0) = p_0 - P_{v perp}(p_0)
 # where P_{v perp}(p_0) = (p_0 \cdot v / ||v||^2) * v
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+
 from utils import *
+
 
 def distance_from_line_to_origin(p_0, v):
     P_l_p_0 = (np.dot(p_0, v) / np.dot(v, v)) * v
     P_l_perp_p_0 = p_0 - P_l_p_0
     return vector_length(P_l_perp_p_0)
+
 
 p_0 = np.array([1, 1, 1])
 v = np.array([2, 1, 5])
@@ -28,21 +31,25 @@ distance = distance_from_line_to_origin(p_0, v)
 
 fig, ax = create_3d_plot()
 
-plot_line(ax, p_0, v, label='Original Line')
-plot_point(ax, p_0, label='p_0')
-plot_vector(ax, p_0, v, color='g', label='v')
+plot_line(ax, p_0, v, label="Original Line")
+plot_point(ax, p_0, label="p_0")
+plot_vector(ax, p_0, v, color="g", label="v")
 
-plot_line(ax, np.zeros(3), v, color='c', linestyle='--', label='Parallel Line through Origin')
+plot_line(
+    ax, np.zeros(3), v, color="c", linestyle="--", label="Parallel Line through Origin"
+)
 
 closest_point = p_0 - (np.dot(p_0, v) / np.dot(v, v)) * v
-plot_point(ax, closest_point, color='m', label='Closest Point')
+plot_point(ax, closest_point, color="m", label="Closest Point")
 
-plot_shortest_distance(ax, np.zeros(3), closest_point, label='Shortest Distance')
+plot_shortest_distance(ax, np.zeros(3), closest_point, label="Shortest Distance")
 
 midpoint = closest_point / 2
-add_text_3d(ax, midpoint, f'Distance: {distance:.2f}', bbox=dict(facecolor='white', alpha=0.7))
+add_text_3d(
+    ax, midpoint, f"Distance: {distance:.2f}", bbox=dict(facecolor="white", alpha=0.7)
+)
 
 set_plot_limits(ax, np.vstack((p_0, v, closest_point)))
-finalize_plot(ax, 'Distance from Line to Origin Visualization')
+finalize_plot(ax, "Distance from Line to Origin Visualization")
 
 plt.show()

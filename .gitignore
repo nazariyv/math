@@ -1,2 +1,6 @@
 .venv/
 __pycache__/
+# Black cache
+.cache/
+# Ruff cache
+.ruff_cache/
